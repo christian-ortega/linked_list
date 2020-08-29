@@ -42,12 +42,12 @@ class LinkedList
   end
 
   def pop
-    
+    self.remove_at(size - 1)
   end
 
   def remove_at(index)
     return if root == nil || index < 0 || index >= size
-    
+
     if index == 0
       self.root = root.next_node
       self.size -= 1
@@ -85,13 +85,11 @@ list = LinkedList.new
   list.append(i)
   list.prepend(i)
 end
-list.remove_at(2)
-list.remove_at(2)
-
-list.remove_at(8)
+5.times do
+  list.pop
+end
 
 p list.to_s
-p list.at(0)
 puts ""
 p list.root
 p list.tail
