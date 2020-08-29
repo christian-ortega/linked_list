@@ -54,6 +54,17 @@ class LinkedList
     false
   end
 
+  def find(value)
+    pointer = root
+    index = 0
+    until pointer == nil do
+      return index if pointer.value == value
+      index += 1
+      pointer = pointer.next_node
+    end
+    nil
+  end
+
   def remove_at(index)
     return if root == nil || index < 0 || index >= size
 
@@ -90,13 +101,13 @@ class LinkedList
 end
 
 list = LinkedList.new
-# 5.times do |i|
-#   list.append(i * 2)
-#   list.prepend(i)
-# end
+5.times do |i|
+  list.append(i * 2)
+  list.prepend(i)
+end
 
-p list.contains?(8)
-p list.contains?(0)
+p list.find(8)
+p list.find(0)
 
 p list.to_s
 puts ""
