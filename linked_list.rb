@@ -14,11 +14,21 @@ class LinkedList
     if root == nil
       self.root = Node.new(value)
       self.tail = root
-      self.size += 1
     else
       tail.next_node = Node.new(value)
       self.tail = tail.next_node
-      self.size += 1
     end
+    self.size += 1
+  end
+
+  def prepend(value)
+    if root == nil
+      self.root = Node.new(value)
+      self.tail = root
+    else
+      temp = root
+      self.root = Node.new(value, temp)
+    end
+    self.size += 1
   end
 end
