@@ -41,6 +41,29 @@ class LinkedList
     pointer
   end
 
+  def pop
+    
+  end
+
+  def remove_at(index)
+    return if root == nil || index < 0 || index >= size
+    
+    if index == 0
+      self.root = root.next_node
+      self.size -= 1
+      self.tail = nil if size <= 0
+      return
+    end
+
+    pointer = root
+    (index - 1).times do
+      pointer = pointer.next_node
+    end
+    pointer.next_node = pointer.next_node.next_node
+    self.tail = pointer if pointer.next_node == nil
+    self.size -= 1
+  end
+
   def to_s
     pointer = root
     list_as_string = ""
@@ -62,6 +85,11 @@ list = LinkedList.new
   list.append(i)
   list.prepend(i)
 end
+list.remove_at(2)
+list.remove_at(2)
+
+list.remove_at(8)
+
 p list.to_s
 p list.at(0)
 puts ""
