@@ -2,7 +2,7 @@ Node = Struct.new(:value, :next_node)
 
 class LinkedList
 
-  attr_accessor :root, :tail, :size
+  attr_reader :root, :tail, :size
 
   def initialize
     @root = nil
@@ -32,6 +32,15 @@ class LinkedList
     self.size += 1
   end
 
+  def at(index)
+    return nil if index < 0 || index >= size
+    pointer = root
+    index.times do
+      pointer = pointer.next_node
+    end
+    pointer
+  end
+
   def to_s
     pointer = root
     list_as_string = ""
@@ -41,6 +50,11 @@ class LinkedList
     end
     list_as_string += "nil"
   end
+
+
+  private
+
+  attr_writer :root, :tail, :size
 end
 
 list = LinkedList.new
@@ -49,3 +63,8 @@ list = LinkedList.new
   list.prepend(i)
 end
 p list.to_s
+p list.at(0)
+puts ""
+p list.root
+p list.tail
+p list.size
