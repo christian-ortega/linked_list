@@ -65,6 +65,27 @@ class LinkedList
     nil
   end
 
+  def insert_at(value, index)
+    return if index < 0 || index > size
+
+    if index == 0
+      self.prepend(value)
+      return
+    elsif index == size
+      self.append(value)
+      return
+    end
+
+    pointer = root
+    (index - 1).times do
+      pointer = pointer.next_node
+    end
+
+    temp = pointer.next_node
+    pointer.next_node = Node.new(value, temp)
+    self.size += 1
+  end
+
   def remove_at(index)
     return if root == nil || index < 0 || index >= size
 
@@ -99,18 +120,3 @@ class LinkedList
 
   attr_writer :root, :tail, :size
 end
-
-list = LinkedList.new
-5.times do |i|
-  list.append(i * 2)
-  list.prepend(i)
-end
-
-p list.find(8)
-p list.find(0)
-
-p list.to_s
-puts ""
-p list.root
-p list.tail
-p list.size
